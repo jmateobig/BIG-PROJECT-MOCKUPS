@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Propuesta 4 - Elegante (controles estilo Propuesta 1)</title>
+  <style>
+    :root{
+      /* valores iniciales (usa hex para que los color pickers se sincronicen) */
+      --header-color: #333333;
+
+      --title-color: #d4af37;   /* gold */
+      --title-size: 28px;
+      --title-weight: normal;
+      --title-align: left;
+
+      --subtitle-color: #dddddd;
+      --subtitle-size: 14px;
+      --subtitle-weight: normal;
+      --subtitle-align: left;
+
+      --table-header-bg: #444444;
+      --table-header-text: #ffffff;
+      --table-header-weight: bold;
+
+      --table-bg: #ffffff;
+      --table-text: #000000;
+      --table-border: #cccccc;
+
+      --footer-text: #444444;
+      --footer-size: 12px;
+      --footer-weight: normal;
+      --footer-border: #d4af37;
+      --footer-align: right;
+    }
+
+    /* layout general */
+    body { display: flex; font-family: "Georgia", serif; margin: 0; height: 100vh; background: #faf9f7; }
+
+    /* === barra de controles (igual que propuesta1) === */
+    .controls-panel { width: 28%; background: #f8f9fa; padding: 15px; border-left: 2px solid #ddd; overflow-y: auto; box-sizing: border-box; }
+    .controls-panel h3 { margin-top: 0; border-bottom: 1px solid #ccc; padding-bottom: 6px; }
+    .controls-panel label { display: block; margin: 6px 0 3px; font-size: 13px; color: #222; }
+    .controls-section { margin-bottom: 18px; padding: 10px; border: 1px solid #ddd; border-radius: 6px; background: #fff; box-shadow: 0 1px 0 rgba(0,0,0,0.02); }
+    .controls-section h4 { margin: 0 0 8px 0; font-size: 14px; color: #333; }
+
+    /* === mockup (no tocar controles desde aquí) === */
+    .mockup { width: 72%; padding: 20px; background: #fff; box-sizing: border-box; }
+
+    /* HEADER: mayor espacio horizontal para el logo (180px) */
+    .header {
+      display: grid;
+      grid-template-columns: 180px 1fr; /* logo más ancho */
+      align-items: center;
+      background: var(--header-color);
+      color: white;
+      padding: 15px;
+      gap: 12px;
+    }
+    .header img { max-height: 80px; max-width: 100%; display: block; margin-left: 8px; }
+    .header h1 {
+      margin: 0;
+      font-size: var(--title-size);
+      color: var(--title-color);
+      font-weight: var(--title-weight);
+      text-align: var(--title-align);
+    }
+    .header .periodo {
+      margin-top: 6px;
+      font-size: var(--subtitle-size);
+      color: var(--subtitle-color);
+      font-weight: var(--subtitle-weight);
+      text-align: var(--subtitle-align);
+    }
+
+    /* TABLE */
+    table { width: 100%; border-collapse: collapse; margin-top: 18px; background: var(--table-bg); }
+    th {
+      background: var(--table-header-bg);
+      color: var(--table-header-text);
+      padding: 10px;
+      border: 1px solid #666;
+      font-weight: var(--table-header-weight);
+      text-align: left;
+    }
+    td {
+      padding: 10px;
+      border: 1px solid var(--table-border);
+      color: var(--table-text);
+      background: var(--table-bg);
+    }
+
+    /* FOOTER */
+    .footer {
+      margin-top: 18px;
+      font-size: var(--footer-size);
+      text-align: var(--footer-align);
+      color: var(--footer-text);
+      font-weight: var(--footer-weight);
+      border-top: 2px solid var(--footer-border);
+      padding-top: 10px;
+      font-style: italic;
+    }
+
+    /* pequeños ajustes visuales de inputs dentro del panel */
+    .controls-panel input[type="color"]{ height:28px; padding:0; border:0; background:none; }
+    .controls-panel input[type="number"]{ width: 80px; }
+    .controls-panel select{ width: 100%; }
+  </style>
+</head>
+<body>
+
+  <!-- MOCKUP -->
+  <div class="mockup" aria-label="Mockup reporte - Propuesta 4">
+    <div class="header">
+      <img id="logo" src="INCAPROSA.png" alt="Logo">
+      <div>
+        <h1 id="titulo">Estado de Resultados</h1>
+        <div class="periodo" id="subtitulo">Ejercicio Fiscal: 2025</div>
+      </div>
+    </div>
+
+    <table aria-label="Tabla ejemplo">
+      <thead>
+        <tr><th>Fecha</th><th>Detalle</th><th>Debe</th><th>Haber</th><th>Saldo</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>04/01</td><td>Venta Exportación</td><td></td><td>5000</td><td>5000</td></tr>
+        <tr><td>06/01</td><td>Pago Nómina</td><td>2000</td><td></td><td>3000</td></tr>
+      </tbody>
+    </table>
+
+    <div class="footer" id="footer">Generado el 01/10/2025 17:05 | Página 1</div>
+  </div>
+
+  <!-- CONTROLES (mismo estilo que Propuesta 1) -->
+  <aside class="controls-panel" aria-label="Panel de controles">
+    <h3>Personalizar</h3>
+
+    <div class="controls-section">
+      <h4>Logo</h4>
+      <label><input type="radio" name="logo" value="INCAPROSA.png" checked> INCAPROSA</label>
+      <label><input type="radio" name="logo" value="CMMN.png"> CMMN</label>
+      <label><input type="radio" name="logo" value="RDI.png"> RDI</label>
+    </div>
+
+    <div class="controls-section">
+      <h4>Título</h4>
+      <label>Color <input type="color" id="title-color"></label>
+      <label>Tamaño <input type="number" id="title-size"></label>
+      <label><input type="checkbox" id="title-weight"> Negrita</label>
+      <label>Alineación
+        <select id="title-align">
+          <option value="left">Izquierda</option>
+          <option value="center">Centro</option>
+          <option value="right">Derecha</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="controls-section">
+      <h4>Subtítulo</h4>
+      <label>Color <input type="color" id="subtitle-color"></label>
+      <label>Tamaño <input type="number" id="subtitle-size"></label>
+      <label><input type="checkbox" id="subtitle-weight"> Negrita</label>
+      <label>Alineación
+        <select id="subtitle-align">
+          <option value="left">Izquierda</option>
+          <option value="center">Centro</option>
+          <option value="right">Derecha</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="controls-section">
+      <h4>Encabezado de Tabla</h4>
+      <label>Color Fondo <input type="color" id="table-header-bg"></label>
+      <label>Color Texto <input type="color" id="table-header-text"></label>
+      <label><input type="checkbox" id="table-header-weight"> Negrita</label>
+    </div>
+
+    <div class="controls-section">
+      <h4>Tabla</h4>
+      <label>Color Fondo <input type="color" id="table-bg"></label>
+      <label>Color Texto <input type="color" id="table-text"></label>
+      <label>Color Borde <input type="color" id="table-border"></label>
+    </div>
+
+    <div class="controls-section">
+      <h4>Pie de Página</h4>
+      <label>Color Texto <input type="color" id="footer-text"></label>
+      <label>Tamaño Texto <input type="number" id="footer-size"></label>
+      <label><input type="checkbox" id="footer-weight"> Negrita</label>
+      <label>Alineación
+        <select id="footer-align">
+          <option value="left">Izquierda</option>
+          <option value="center">Centro</option>
+          <option value="right">Derecha</option>
+        </select>
+      </label>
+      <label>Color Línea <input type="color" id="footer-border"></label>
+    </div>
+  </aside>
+
+  <script>
+    /* Helper: aplica cambios desde inputs a variables CSS */
+    function applyVarFromInput(el, cssVar, unit = "") {
+      if(!el) return;
+      if (el.type === "checkbox") {
+        document.documentElement.style.setProperty(cssVar, el.checked ? "bold" : "normal");
+      } else if (el.tagName === "SELECT") {
+        document.documentElement.style.setProperty(cssVar, el.value);
+      } else {
+        const v = el.value;
+        document.documentElement.style.setProperty(cssVar, (el.type === "number") ? (v + unit) : v);
+      }
+    }
+
+    // Radio logos
+    document.querySelectorAll("input[name='logo']").forEach(r => {
+      r.addEventListener("change", (e) => {
+        document.getElementById("logo").src = e.target.value;
+      });
+    });
+
+    // Map inputs -> css variable names
+    const mapping = {
+      "title-color":"--title-color",
+      "title-size":"--title-size",
+      "title-weight":"--title-weight",
+      "title-align":"--title-align",
+
+      "subtitle-color":"--subtitle-color",
+      "subtitle-size":"--subtitle-size",
+      "subtitle-weight":"--subtitle-weight",
+      "subtitle-align":"--subtitle-align",
+
+      "table-header-bg":"--table-header-bg",
+      "table-header-text":"--table-header-text",
+      "table-header-weight":"--table-header-weight",
+
+      "table-bg":"--table-bg",
+      "table-text":"--table-text",
+      "table-border":"--table-border",
+
+      "footer-text":"--footer-text",
+      "footer-size":"--footer-size",
+      "footer-weight":"--footer-weight",
+      "footer-align":"--footer-align",
+      "footer-border":"--footer-border"
+    };
+
+    // Attach listeners for update live
+    Object.keys(mapping).forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const cssVar = mapping[id];
+      const unit = (el.type === "number") ? "px" : "";
+      el.addEventListener("input", () => applyVarFromInput(el, cssVar, unit));
+      // also update relevant DOM attributes that don't rely on CSS vars (none needed here; header/footer use vars)
+    });
+
+    // Sincronizar inputs con valores en :root al cargar
+    function initControls() {
+      const styles = getComputedStyle(document.documentElement);
+
+      function readVar(name){
+        return styles.getPropertyValue(name).trim();
+      }
+
+      // función para setear un input desde var css
+      function setInputFromVar(id, varName){
+        const el = document.getElementById(id);
+        if(!el) return;
+        let v = readVar(varName);
+        if(!v) return;
+        if(el.type === "color"){
+          // asegúrate que v sea un hex; si es 'gold' o similar, fallback a #d4af37
+          // pero como en :root usamos hex, esto funcionará
+          el.value = v;
+        } else if(el.type === "number"){
+          el.value = parseInt(v) || "";
+        } else if(el.type === "checkbox"){
+          el.checked = (v === "bold");
+        } else if(el.tagName === "SELECT"){
+          el.value = v || el.value;
+        } else {
+          el.value = v;
+        }
+      }
+
+      // setear todos
+      setInputFromVar("title-color","--title-color");
+      setInputFromVar("title-size","--title-size");
+      setInputFromVar("title-weight","--title-weight");
+      setInputFromVar("title-align","--title-align");
+
+      setInputFromVar("subtitle-color","--subtitle-color");
+      setInputFromVar("subtitle-size","--subtitle-size");
+      setInputFromVar("subtitle-weight","--subtitle-weight");
+      setInputFromVar("subtitle-align","--subtitle-align");
+
+      setInputFromVar("table-header-bg","--table-header-bg");
+      setInputFromVar("table-header-text","--table-header-text");
+      setInputFromVar("table-header-weight","--table-header-weight");
+
+      setInputFromVar("table-bg","--table-bg");
+      setInputFromVar("table-text","--table-text");
+      setInputFromVar("table-border","--table-border");
+
+      setInputFromVar("footer-text","--footer-text");
+      setInputFromVar("footer-size","--footer-size");
+      setInputFromVar("footer-weight","--footer-weight");
+      setInputFromVar("footer-align","--footer-align");
+      setInputFromVar("footer-border","--footer-border");
+    }
+
+    window.addEventListener("DOMContentLoaded", initControls);
+  </script>
+</body>
+</html>

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Propuesta 1</title>
+  <style>
+    :root {
+      /* ===== Valores iniciales ===== */
+      --title-color: #003366;
+      --title-size: 22px;
+      --title-bold: normal;
+      --title-align: right;
+
+      --subtitle-color: #555555;
+      --subtitle-size: 14px;
+      --subtitle-bold: normal;
+
+      --table-header-bg: #003366;
+      --table-header-text: #ffffff;
+      --table-header-bold: bold;
+
+      --table-bg: #ffffff;
+      --table-text: #000000;
+
+      --footer-text: #666666;
+      --footer-size: 12px;
+      --footer-bold: normal;
+      --footer-color: #003366;
+    }
+
+    body { display: flex; font-family: Arial, sans-serif; margin: 0; height: 100vh; }
+    .controls-panel { width: 28%; background: #f8f9fa; padding: 15px; border-left: 2px solid #ddd; overflow-y: auto; }
+    .controls-panel h3 { margin-top: 0; border-bottom: 1px solid #ccc; padding-bottom: 5px; }
+    .controls-panel label { display: block; margin: 6px 0 3px; font-size: 13px; }
+    .controls-section { margin-bottom: 20px; padding: 10px; border: 1px solid #ddd; border-radius: 5px; background: #fff; }
+    .mockup { width: 72%; padding: 20px; background: #fff; }
+    
+    /* ---- Mockup ---- */
+    .header { 
+      display: grid; 
+      grid-template-columns: 1fr 3fr; 
+      align-items: center; 
+      border-bottom: 3px solid var(--header-color, #003366); 
+      padding: 10px; 
+      gap: 10px;
+    }
+    .header-logo { text-align: left; }
+    .header-logo img { height: 50px; }
+    .header-text { text-align: var(--title-align); }
+    .header-text h1 { 
+      color: var(--title-color); 
+      font-size: var(--title-size); 
+      font-weight: var(--title-bold); 
+      margin: 0; 
+    }
+    .header-text .periodo { 
+      color: var(--subtitle-color); 
+      font-size: var(--subtitle-size); 
+      font-weight: var(--subtitle-bold); 
+    }
+
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th { 
+      background: var(--table-header-bg); 
+      color: var(--table-header-text); 
+      font-weight: var(--table-header-bold);
+      padding: 8px; 
+      text-align: left; 
+    }
+    td { 
+      padding: 8px; 
+      border-bottom: 1px solid #ddd; 
+      color: var(--table-text); 
+      background: var(--table-bg);
+    }
+    .footer { 
+      margin-top: 30px; 
+      text-align: right; 
+      font-size: var(--footer-size); 
+      color: var(--footer-text);
+      font-weight: var(--footer-bold);
+      border-top: 2px solid var(--footer-color); 
+      padding-top: 10px; 
+    }
+  </style>
+</head>
+<body>
+  <div class="mockup">
+    <div class="header">
+      <div class="header-logo">
+        <img id="logo" src="INCAPROSA.png" alt="Logo">
+      </div>
+      <div class="header-text">
+        <h1 id="titulo">Diario Mayor General</h1>
+        <div class="periodo" id="subtitulo">Periodo: Enero 2025</div>
+      </div>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Fecha</th><th>Descripción</th><th>Doc.</th><th>Poliza</th>
+          <th>Cargo</th><th>Abono</th><th>Saldo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>01/01/2025</td><td>Compra Material</td><td>001</td><td>2025-01</td><td>500</td><td></td><td>500</td></tr>
+        <tr><td>05/01/2025</td><td>Pago Proveedor</td><td>002</td><td>2025-02</td><td></td><td>500</td><td>0</td></tr>
+      </tbody>
+    </table>
+    <div class="footer">Página 1 | Generado el 01/10/2025 17:00</div>
+  </div>
+
+  <div class="controls-panel">
+    <h3>Configuración del Reporte</h3>
+
+    <!-- LOGOS -->
+    <div class="controls-section">
+      <h4>Logo</h4>
+      <label><input type="radio" name="logo" value="INCAPROSA.png" checked> INCAPROSA</label>
+      <label><input type="radio" name="logo" value="CMMN.png"> CMMN</label>
+      <label><input type="radio" name="logo" value="RDI.png"> RFI</label>
+    </div>
+
+    <!-- TÍTULO -->
+    <div class="controls-section">
+      <h4>Título</h4>
+      <label>Color <input type="color" id="title-color"></label>
+      <label>Tamaño <input type="number" id="title-size"></label>
+      <label><input type="checkbox" id="title-bold"> Negrita</label>
+      <label>Alineación
+        <select id="title-align">
+            <option value="left">Izquierda</option>
+            <option value="center">Centro</option>
+            <option value="right">Derecha</option>
+        </select>
+      </label>
+    </div>
+
+    <!-- SUBTÍTULO -->
+    <div class="controls-section">
+      <h4>Subtítulo</h4>
+      <label>Color <input type="color" id="subtitle-color"></label>
+      <label>Tamaño <input type="number" id="subtitle-size"></label>
+      <label><input type="checkbox" id="subtitle-bold"> Negrita</label>
+    </div>
+
+    <!-- ENCABEZADO TABLA -->
+    <div class="controls-section">
+      <h4>Encabezado de Tabla</h4>
+      <label>Color Fondo <input type="color" id="table-header-bg"></label>
+      <label>Color Texto <input type="color" id="table-header-text"></label>
+      <label><input type="checkbox" id="table-header-bold"> Negrita</label>
+    </div>
+
+    <!-- TABLA -->
+    <div class="controls-section">
+      <h4>Tabla</h4>
+      <label>Color Fondo <input type="color" id="table-bg"></label>
+      <label>Color Texto <input type="color" id="table-text"></label>
+    </div>
+
+    <!-- PIE DE PÁGINA -->
+    <div class="controls-section">
+      <h4>Pie de Página</h4>
+      <label>Color Texto <input type="color" id="footer-text"></label>
+      <label>Tamaño Texto <input type="number" id="footer-size"></label>
+      <label><input type="checkbox" id="footer-bold"> Negrita</label>
+      <label>Color Línea <input type="color" id="footer-color"></label>
+    </div>
+  </div>
+
+  <script>
+    // ---- Cambiar logo ----
+    document.querySelectorAll("input[name='logo']").forEach(radio => {
+      radio.addEventListener("change", e => {
+        document.getElementById("logo").src = e.target.value;
+      });
+    });
+
+    // ---- Dinámicos ----
+    function updateCSSVar(id, varName, unit="") {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.addEventListener("input", () => {
+        let val = el.type==="checkbox" ? (el.checked ? "bold" : "normal") : el.value + unit;
+        document.documentElement.style.setProperty(`--${varName}`, val);
+      });
+    }
+
+    // Inicializar inputs desde variables CSS
+    function initControls() {
+      const styles = getComputedStyle(document.documentElement);
+
+      function setInput(id, varName, unit="") {
+        const el = document.getElementById(id);
+        if (!el) return;
+        let val = styles.getPropertyValue(`--${varName}`).trim();
+
+        if (el.type === "color") {
+          el.value = val || "#000000";
+        } else if (el.type === "number") {
+          el.value = parseInt(val) || "";
+        } else if (el.type === "checkbox") {
+          el.checked = (val === "bold");
+        } else if (el.tagName === "SELECT") {
+          el.value = val || "left";
+        }
+      }
+
+      // Setear todos
+      setInput("title-color","title-color");
+      setInput("title-size","title-size","px");
+      setInput("title-bold","title-bold");
+      setInput("title-align","title-align");
+
+      setInput("subtitle-color","subtitle-color");
+      setInput("subtitle-size","subtitle-size","px");
+      setInput("subtitle-bold","subtitle-bold");
+
+      setInput("table-header-bg","table-header-bg");
+      setInput("table-header-text","table-header-text");
+      setInput("table-header-bold","table-header-bold");
+
+      setInput("table-bg","table-bg");
+      setInput("table-text","table-text");
+
+      setInput("footer-text","footer-text");
+      setInput("footer-size","footer-size","px");
+      setInput("footer-bold","footer-bold");
+      setInput("footer-color","footer-color");
+    }
+
+    // ---- Eventos
+    updateCSSVar("title-color","title-color");
+    updateCSSVar("title-size","title-size","px");
+    updateCSSVar("title-bold","title-bold");
+    document.getElementById("title-align").addEventListener("change", e => {
+      document.documentElement.style.setProperty("--title-align", e.target.value);
+    });
+
+    updateCSSVar("subtitle-color","subtitle-color");
+    updateCSSVar("subtitle-size","subtitle-size","px");
+    updateCSSVar("subtitle-bold","subtitle-bold");
+
+    updateCSSVar("table-header-bg","table-header-bg");
+    updateCSSVar("table-header-text","table-header-text");
+    updateCSSVar("table-header-bold","table-header-bold");
+
+    updateCSSVar("table-bg","table-bg");
+    updateCSSVar("table-text","table-text");
+
+    updateCSSVar("footer-text","footer-text");
+    updateCSSVar("footer-size","footer-size","px");
+    updateCSSVar("footer-bold","footer-bold");
+    updateCSSVar("footer-color","footer-color");
+
+    // Ejecutar init al cargar
+    window.onload = initControls;
+  </script>
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Propuesta 2</title>
+  <style>
+    body { display: flex; font-family: "Segoe UI", sans-serif; margin: 0; height: 100vh; }
+    .controls-panel { width: 28%; background: #f4fef9; padding: 15px; border-left: 2px solid #ccc; overflow-y: auto; }
+    .controls-panel h3 { margin-top: 0; border-bottom: 1px solid #ccc; padding-bottom: 5px; }
+    .controls-panel label { display: block; margin: 6px 0 3px; font-size: 13px; }
+    .controls-section { margin-bottom: 20px; padding: 10px; border: 1px solid #ddd; border-radius: 5px; background: #fff; }
+    .mockup { width: 72%; padding: 20px; background: #fff; }
+
+    /* ===== HEADER ===== */
+    .header { 
+      display: grid; 
+      grid-template-columns: 3fr 1fr; 
+      align-items: center; 
+      border-bottom: 2px solid var(--header-color, #00897b); 
+      padding: 10px; 
+      gap: 10px;
+    }
+    .header-text { text-align: var(--title-align, left); }
+    .header-text h1 { margin: 0; color: var(--title-color, #00695c); font-size: var(--title-size, 26px); font-weight: var(--title-bold, normal); }
+    .header-text .periodo { color: var(--subtitle-color, #444); font-size: var(--subtitle-size, 14px); font-style: italic; font-weight: var(--subtitle-bold, normal); }
+    .header-logo { text-align: right; }
+    .header-logo img { height: 60px; }
+
+    /* ===== TABLE ===== */
+    table { width: 100%; border-spacing: 0; margin-top: 20px; border: 1px solid #e0e0e0; }
+    th { background: var(--table-header-bg, #26a69a); color: var(--table-header-text, #fff); padding: 10px; text-align: center; font-weight: var(--table-header-bold, bold); }
+    td { padding: 10px; border-bottom: 1px solid #e0e0e0; text-align: center; color: var(--table-text, #000); background: var(--table-bg, #fff); }
+
+    /* ===== FOOTER ===== */
+    .footer { margin-top: 20px; font-size: var(--footer-size, 12px); text-align: center; color: var(--footer-text, #555);
+              border-top: 1px solid var(--footer-color, #26a69a); padding-top: 10px; font-weight: var(--footer-bold, normal); }
+  </style>
+</head>
+<body>
+  <div class="mockup">
+    <div class="header">
+      <div class="header-text">
+        <h1 id="titulo">Reporte Financiero</h1>
+        <div class="periodo" id="subtitulo">Del 01 al 31 de Enero 2025</div>
+      </div>
+      <div class="header-logo">
+        <img id="logo" src="INCAPROSA.png" alt="Logo">
+      </div>
+    </div>
+    <table>
+      <thead>
+        <tr><th>Fecha</th><th>Concepto</th><th>Cargo</th><th>Abono</th><th>Saldo</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>02/01</td><td>Ingreso Ventas</td><td></td><td>1500</td><td>1500</td></tr>
+        <tr><td>03/01</td><td>Pago Servicios</td><td>300</td><td></td><td>1200</td></tr>
+      </tbody>
+    </table>
+    <div class="footer">Página 1 de 10 | Generado 01/10/2025</div>
+  </div>
+
+  <div class="controls-panel">
+    <h3>Configuración del Reporte</h3>
+
+    <!-- LOGOS -->
+    <div class="controls-section">
+      <h4>Logo</h4>
+      <label><input type="radio" name="logo" value="INCAPROSA.png" checked> INCAPROSA</label>
+      <label><input type="radio" name="logo" value="CMMN.png"> CMMN</label>
+      <label><input type="radio" name="logo" value="RDI.png"> RDI</label>
+    </div>
+
+    <!-- TÍTULO -->
+    <div class="controls-section">
+      <h4>Título</h4>
+      <label>Color <input type="color" id="title-color"></label>
+      <label>Tamaño <input type="number" id="title-size" value="26"></label>
+      <label><input type="checkbox" id="title-bold"> Negrita</label>
+      <label>Alineación
+        <select id="title-align">
+            <option value="left" selected>Izquierda</option>
+            <option value="center">Centro</option>
+            <option value="right">Derecha</option>
+        </select>
+      </label>
+    </div>
+
+    <!-- SUBTÍTULO -->
+    <div class="controls-section">
+      <h4>Subtítulo</h4>
+      <label>Color <input type="color" id="subtitle-color"></label>
+      <label>Tamaño <input type="number" id="subtitle-size" value="14"></label>
+      <label><input type="checkbox" id="subtitle-bold"> Negrita</label>
+    </div>
+
+    <!-- ENCABEZADO TABLA -->
+    <div class="controls-section">
+      <h4>Encabezado de Tabla</h4>
+      <label>Color Fondo <input type="color" id="table-header-bg"></label>
+      <label>Color Texto <input type="color" id="table-header-text"></label>
+      <label><input type="checkbox" id="table-header-bold" checked> Negrita</label>
+    </div>
+
+    <!-- TABLA -->
+    <div class="controls-section">
+      <h4>Tabla</h4>
+      <label>Color Fondo <input type="color" id="table-bg"></label>
+      <label>Color Texto <input type="color" id="table-text"></label>
+    </div>
+
+    <!-- PIE DE PÁGINA -->
+    <div class="controls-section">
+      <h4>Pie de Página</h4>
+      <label>Color Texto <input type="color" id="footer-text"></label>
+      <label>Tamaño Texto <input type="number" id="footer-size" value="12"></label>
+      <label><input type="checkbox" id="footer-bold"> Negrita</label>
+      <label>Color Línea <input type="color" id="footer-color"></label>
+    </div>
+  </div>
+
+  <script>
+    // ---- Cambiar logo ----
+    document.querySelectorAll("input[name='logo']").forEach(radio => {
+      radio.addEventListener("change", e => {
+        document.getElementById("logo").src = e.target.value;
+      });
+    });
+
+    // ---- Dinámicos ----
+    function updateCSSVar(id, varName, unit="") {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.addEventListener("input", () => {
+        let val = el.type==="checkbox" ? (el.checked ? "bold" : "normal") : el.value + unit;
+        document.documentElement.style.setProperty(`--${varName}`, val);
+      });
+    }
+
+    // Título
+    updateCSSVar("title-color","title-color");
+    updateCSSVar("title-size","title-size","px");
+    updateCSSVar("title-bold","title-bold");
+    document.getElementById("title-align").addEventListener("change", e => {
+      document.documentElement.style.setProperty("--title-align", e.target.value);
+    });
+
+    // Subtítulo
+    updateCSSVar("subtitle-color","subtitle-color");
+    updateCSSVar("subtitle-size","subtitle-size","px");
+    updateCSSVar("subtitle-bold","subtitle-bold");
+
+    // Encabezado tabla
+    updateCSSVar("table-header-bg","table-header-bg");
+    updateCSSVar("table-header-text","table-header-text");
+    updateCSSVar("table-header-bold","table-header-bold");
+
+    // Tabla
+    updateCSSVar("table-bg","table-bg");
+    updateCSSVar("table-text","table-text");
+
+    // Pie de página
+    updateCSSVar("footer-text","footer-text");
+    updateCSSVar("footer-size","footer-size","px");
+    updateCSSVar("footer-bold","footer-bold");
+    updateCSSVar("footer-color","footer-color");
+
+    // ---- Inicializar controles ----
+    window.addEventListener("DOMContentLoaded", () => {
+      const vars = {
+        "title-color":"#00695c", "title-size":26, "subtitle-color":"#444",
+        "subtitle-size":14, "table-header-bg":"#26a69a", "table-header-text":"#ffffff",
+        "table-bg":"#ffffff", "table-text":"#000000", "footer-text":"#555555",
+        "footer-size":12, "footer-color":"#26a69a"
+      };
+      for (const id in vars) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+        if (el.type==="color") el.value = vars[id];
+        if (el.type==="number") el.value = vars[id];
+        if (el.type==="checkbox" && vars[id]==="bold") el.checked = true;
+        document.documentElement.style.setProperty(`--${id}`, (el.type==="number"?el.value+"px":el.value));
+      }
+      // Inicializa la alineación
+      document.getElementById("title-align").value = "left";
+      document.documentElement.style.setProperty("--title-align", "left");
+    });
+  </script>
+</body>
+</html>
