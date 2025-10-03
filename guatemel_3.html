@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Simulación de Pago</title>
+  <style>
+    :root {
+      --primary: #004080;
+      --secondary: #f5f7fa;
+      --table-header-bg: #004080;
+      --table-header-text: #ffffff;
+      --card-bg: #ffffff;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #e9ecef;
+      display: flex;
+      justify-content: center;
+    }
+
+    /* Hoja oficio */
+    .mockup {
+      width: 21.59cm;
+      min-height: 33.02cm;
+      background: #fff;
+      margin: 20px;
+      padding: 20px 25px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.3);
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    /* Header dentro de la hoja */
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: 10px;
+    }
+    .header-logo img { height: 55px; }
+    .header-text { font-size: 11px; line-height: 1.4; color: #333; }
+
+    /* Títulos */
+    .titulo {
+      background: var(--primary);
+      color: #fff;
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+      padding: 6px;
+      border-radius: 4px;
+    }
+    .subtitulo {
+      font-size: 11px;
+      color: #555;
+      text-align: left;
+      margin-top: -5px;
+      margin-bottom: 10px;
+    }
+
+    /* Card tablas */
+    .card {
+      background: var(--card-bg);
+      border-radius: 5px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+      padding: 8px;
+    }
+    .card table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 10.5px;
+    }
+    .card th, .card td {
+      border: 1px solid #ddd;
+      padding: 5px;
+    }
+    .card th {
+      background: var(--table-header-bg);
+      color: var(--table-header-text);
+    }
+
+    /* Grid tablas */
+    .tables-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 12px;
+    }
+
+    /* Charts dentro de hoja */
+    .charts {
+      display: flex;
+      gap: 12px;
+      margin-top: 10px;
+      justify-content: space-between;
+    }
+    .charts canvas {
+      width: 48% !important;
+      height: 230px !important;
+      background: var(--secondary);
+      border-radius: 5px;
+      padding: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HOJA -->
+  <div class="mockup">
+
+    <!-- HEADER -->
+    <div class="header">
+      <div class="header-logo"><img src="guatemel.png" alt="Logo"></div>
+      <div class="header-text">
+        <strong>COMERCIALIZADORA GUATEMALTECA MAYORISTA DE ELECTRICIDAD, SOCIEDAD ANÓNIMA</strong><br>
+        Diagonal 6, 10-50 Zona 10, Edificio Interaméricas World Trade Center, Torre Sur, Nivel 14, Oficina 1401<br>
+        Guatemala, Guatemala<br>
+        Tel: 2367 9300
+      </div>
+    </div>
+
+    <!-- TITULOS -->
+    <div class="titulo">Simulación de Pago: UNIVERSIDAD MARIANO GÁLVEZ</div>
+    <div class="subtitulo">Aplicada desde Enero 2025 hasta Diciembre 2025</div>
+
+    <!-- Condiciones -->
+    <div class="card">
+      <table>
+        <thead><tr><th colspan="3">Condiciones Contractuales</th></tr></thead>
+        <tbody>
+          <tr><td>Código Usuario: GUS000000000000</td><td>NIS: 6114346</td><td>Tipo de Cambio: Q 7.6675</td></tr>
+          <tr><td>Tipo Contrato: Valor fee</td><td>Techo-Piso:</td><td>Fee Spot: 3.0000</td></tr>
+          <tr><td>Tipo Potencia: Demanda Firme</td><td>Demanda Firme Anual: 100.0</td><td>Demanda Contratada:</td></tr>
+          <tr><td>Precio Potencia: $ 10.00</td><td>Tipo Peaje: DEOCSA</td><td>Versión del ITE: A</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Resumen -->
+    <div class="card">
+      <table>
+        <thead><tr><th colspan="3">Resumen</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Energía Valle Promedio(kWh): 7,152.62</td>
+            <td>Energía Intermedia Promedio(kWh): 21,494.76</td>
+            <td>Energía Punta Promedio(kWh): 6,961.44</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Tablas detalle -->
+    <div class="tables-grid">
+      <div class="card">
+        <table>
+          <thead><tr><th colspan="4">PROMEDIO MENSUAL DE CARGOS</th></tr></thead>
+          <thead><tr><th>No.</th><th>Descripción</th><th>Importe ($)</th><th>Importe (Q)</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Energía Julio</td><td>3,299.26</td><td>25,297.04</td></tr>
+            <tr><td>2</td><td>Potencia Julio</td><td>1,000.00</td><td>7,667.50</td></tr>
+            <tr><td>3</td><td>Desvío de Potencia</td><td>79.92</td><td>612.80</td></tr>
+            <tr><td>4</td><td>Peaje Principal</td><td>481.64</td><td>3,692.95</td></tr>
+            <tr><td>5</td><td>Peaje Secundario</td><td>165.21</td><td>1,266.74</td></tr>
+            <tr><td>6</td><td>RRO</td><td>129.23</td><td>990.86</td></tr>
+            <tr><td>7</td><td>RRA</td><td>36.01</td><td>276.08</td></tr>
+            <tr><td>8</td><td>Cargo 50 Bis</td><td>7.16</td><td>54.88</td></tr>
+            <tr><td>9</td><td>Generación Forzada</td><td>75.22</td><td>576.72</td></tr>
+            <tr><td>10</td><td>Línea SIEPAC</td><td>13.59</td><td>104.19</td></tr>
+            <tr><td>11</td><td>VAD DEOCSA</td><td>1,261.08</td><td>9,669.36</td></tr>
+            <tr><td>12</td><td>Arrendamiento equipo</td><td>0</td><td>0</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card">
+        <table>
+          <thead><tr><th colspan="3">RESUMEN MENSUAL</th></tr></thead>
+          <thead><tr><th>Mes</th><th>Importe ($)</th><th>Importe (Q)</th></tr></thead>
+          <tbody>
+            <tr><td>ene-25</td><td>100</td><td>850</td></tr>
+            <tr><td>feb-25</td><td>200</td><td>1,600</td></tr>
+            <tr><td>mar-25</td><td>150</td><td>1,250</td></tr>
+            <tr><td>abr-25</td><td>210</td><td>1,700</td></tr>
+            <tr><td>may-25</td><td>180</td><td>1,450</td></tr>
+            <tr><td>jun-25</td><td>195</td><td>1,600</td></tr>
+            <tr><td>jul-25</td><td>220</td><td>1,800</td></tr>
+            <tr><td>ago-25</td><td>170</td><td>1,400</td></tr>
+            <tr><td>sep-25</td><td>190</td><td>1,550</td></tr>
+            <tr><td>oct-25</td><td>200</td><td>1,600</td></tr>
+            <tr><td>nov-25</td><td>210</td><td>1,650</td></tr>
+            <tr><td>dic-25</td><td>230</td><td>1,750</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Gráficas -->
+    <div class="charts">
+      <canvas id="lineChart"></canvas>
+      <canvas id="barChart"></canvas>
+    </div>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const ctx1 = document.getElementById('lineChart').getContext('2d');
+    new Chart(ctx1, {
+      type: 'line',
+      data: {
+        labels: ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'],
+        datasets: [{ 
+          label: 'Importe Q', 
+          data: [850,1600,1250,1700,1450,1600,1800,1400,1550,1600,1650,1750], 
+          borderColor: '#004080', 
+          fill: false 
+        }]
+      }
+    });
+
+    const ctx2 = document.getElementById('barChart').getContext('2d');
+    new Chart(ctx2, {
+      type: 'bar',
+      data: {
+        labels: ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'],
+        datasets: [{ 
+          label: 'Consumo kWh', 
+          data: [700,900,800,950,870,910,1000,850,880,920,970,1050], 
+          backgroundColor: '#007bff' 
+        }]
+      }
+    });
+  </script>
+</body>
+</html>
