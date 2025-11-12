@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Armes y Desarmes - SATI</title>
+<style>
+    body {
+        font-family: 'Segoe UI', sans-serif;
+        background: #f3f3f3;
+        margin: 0;
+        padding: 0;
+    }
+    .ribbon {
+        background: #2c5aa0;
+        color: white;
+        padding: 10px 20px;
+        font-weight: bold;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+    }
+    .container {
+        background: white;
+        width: 900px;
+        margin: 30px auto;
+        border: 1px solid #ccc;
+        box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+    }
+    .header {
+        background: #e6eef7;
+        padding: 10px 20px;
+        border-bottom: 1px solid #ccc;
+        font-weight: bold;
+    }
+    .section {
+        padding: 20px;
+        border-bottom: 1px solid #ddd;
+    }
+    .form-row {
+        margin-bottom: 10px;
+    }
+    label {
+        display: inline-block;
+        width: 120px;
+    }
+    select, input[type="number"], input[type="text"] {
+        width: 250px;
+        padding: 5px;
+        border: 1px solid #ccc;
+    }
+    button {
+        padding: 5px 12px;
+        background: #2c5aa0;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 3px;
+    }
+    button:hover {
+        background: #1e4378;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
+    th, td {
+        border: 1px solid #ccc;
+        padding: 6px 10px;
+        text-align: left;
+    }
+    th {
+        background: #e6eef7;
+    }
+    .totales {
+        margin-top: 10px;
+        display: flex;
+        justify-content: flex-end;
+        gap: 20px;
+    }
+    .totales label {
+        width: auto;
+        font-weight: bold;
+    }
+    .footer {
+        background: #f9f9f9;
+        padding: 10px 20px;
+        text-align: right;
+        font-size: 12px;
+        color: #666;
+    }
+</style>
+</head>
+<body>
+    <div class="ribbon">SATI - Armes y Desarmes</div>
+
+    <div class="container">
+        <div class="header">Desarme</div>
+        <div class="section">
+            <div class="form-row">
+                <label>Producto:</label>
+                <select>
+                    <option>Seleccione producto...</option>
+                    <option>Producto A</option>
+                    <option>Producto B</option>
+                    <option>Producto C</option>
+                </select>
+                <label style="margin-left:20px;">Cantidad:</label>
+                <input type="number" value="1" min="1">
+                <button>Agregar</button>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Valor Unitario</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Producto A</td><td>2</td><td>100.00</td><td>200.00</td></tr>
+                </tbody>
+            </table>
+
+            <div class="totales">
+                <label>Total Desarme:</label>
+                <input type="text" value="200.00" readonly>
+            </div>
+
+            <div class="totales">
+                <table>
+                    <tr><th>Concepto</th><th>Debe</th><th>Haber</th></tr>
+                    <tr><td>Valor Mercadería</td><td>200.00</td><td>0.00</td></tr>
+                    <tr><td>Cuenta Movimiento</td><td>0.00</td><td>200.00</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="header">Arme</div>
+        <div class="section">
+            <div class="form-row">
+                <label>Producto:</label>
+                <select>
+                    <option>Seleccione producto...</option>
+                    <option>Producto X</option>
+                    <option>Producto Y</option>
+                    <option>Producto Z</option>
+                </select>
+                <label style="margin-left:20px;">Cantidad:</label>
+                <input type="number" value="1" min="1">
+                <button>Agregar</button>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Valor Unitario</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Producto X</td><td>1</td><td>150.00</td><td>150.00</td></tr>
+                </tbody>
+            </table>
+
+            <div class="totales">
+                <label>Total Arme:</label>
+                <input type="text" value="150.00" readonly>
+            </div>
+
+            <div class="totales">
+                <table>
+                    <tr><th>Concepto</th><th>Debe</th><th>Haber</th></tr>
+                    <tr><td>Valor Mercadería</td><td>0.00</td><td>150.00</td></tr>
+                    <tr><td>Cuenta Movimiento</td><td>150.00</td><td>0.00</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="footer">Registro 1 de 1</div>
+    </div>
+</body>
+</html>
