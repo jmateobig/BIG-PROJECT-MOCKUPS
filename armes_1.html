@@ -3,185 +3,476 @@
 <head>
 <meta charset="UTF-8">
 <title>Armes y Desarmes - SATI</title>
+
 <style>
     body {
         font-family: 'Segoe UI', sans-serif;
-        background: #f3f3f3;
+        background: #eef1f5;
         margin: 0;
         padding: 0;
     }
+
     .ribbon {
         background: #2c5aa0;
-        color: white;
-        padding: 10px 20px;
+        padding: 14px 22px;
+        color: #fff;
+        font-size: 18px;
         font-weight: bold;
-        font-size: 14px;
-        display: flex;
-        align-items: center;
     }
+
     .container {
-        background: white;
-        width: 900px;
+        background: #fff;
+        width: 1000px;
         margin: 30px auto;
-        border: 1px solid #ccc;
-        box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+        border-radius: 8px;
+        box-shadow: 0px 4px 12px rgba(0,0,0,0.15);
+        overflow: hidden;
     }
+
     .header {
-        background: #e6eef7;
-        padding: 10px 20px;
-        border-bottom: 1px solid #ccc;
+        background: #dbe6f3;
+        padding: 12px 20px;
         font-weight: bold;
+        border-bottom: 1px solid #c6d4e2;
+        font-size: 16px;
     }
+
     .section {
         padding: 20px;
-        border-bottom: 1px solid #ddd;
+        border-bottom: 1px solid #eee;
     }
-    .form-row {
+
+    .grid-header {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px 25px;
         margin-bottom: 10px;
     }
-    label {
-        display: inline-block;
-        width: 120px;
+
+    .grid-header label {
+        font-weight: 600;
     }
-    select, input[type="number"], input[type="text"] {
+
+    .grid-header input,
+    .grid-header select {
+        width: 100%;
+        padding: 8px;
+        border-radius: 5px;
+        border: 1px solid #bbb;
+        background: #fdfdfd;
+    }
+
+    .grid-header .full {
+        grid-column: span 4;
+    }
+
+    .searchable {
+        position: relative;
+    }
+
+    .searchable input {
         width: 250px;
-        padding: 5px;
-        border: 1px solid #ccc;
+        padding: 8px;
+        border-radius: 5px;
+        border: 1px solid #999;
     }
+
+    .searchable ul {
+        position: absolute;
+        top: 36px;
+        left: 0;
+        width: 250px;
+        max-height: 150px;
+        overflow-y: auto;
+        border: 1px solid #aaa;
+        background: white;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        display: none;
+        z-index: 5;
+    }
+
+    .searchable ul li {
+        padding: 8px;
+        cursor: pointer;
+    }
+
+    .searchable ul li:hover {
+        background: #e2e8f0;
+    }
+
     button {
-        padding: 5px 12px;
+        padding: 8px 15px;
         background: #2c5aa0;
         color: white;
         border: none;
+        border-radius: 6px;
         cursor: pointer;
-        border-radius: 3px;
+        font-size: 14px;
+        font-weight: 600;
     }
+
     button:hover {
         background: #1e4378;
     }
+
+    button:disabled {
+        background: #999 !important;
+        cursor: not-allowed;
+    }
+
     table {
         width: 100%;
         border-collapse: collapse;
         margin-top: 10px;
+        border-radius: 6px;
+        overflow: hidden;
     }
-    th, td {
-        border: 1px solid #ccc;
-        padding: 6px 10px;
-        text-align: left;
-    }
+
     th {
-        background: #e6eef7;
-    }
-    .totales {
-        margin-top: 10px;
-        display: flex;
-        justify-content: flex-end;
-        gap: 20px;
-    }
-    .totales label {
-        width: auto;
+        background: #f0f5fb;
         font-weight: bold;
     }
-    .footer {
-        background: #f9f9f9;
-        padding: 10px 20px;
+
+    th, td {
+        border: 1px solid #d1d9e6;
+        padding: 8px 10px;
+    }
+
+    .trash {
+        color: #d9534f;
+        cursor: pointer;
+        font-size: 18px;
+    }
+
+    .trash:hover {
+        color: #b52b27;
+    }
+
+    .form-inline {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .totales {
         text-align: right;
-        font-size: 12px;
-        color: #666;
+        margin-top: 12px;
+        font-size: 16px;
+    }
+
+    #totalDesarme, #totalArme {
+        width: 120px;
+        font-weight: bold;
+        background: #f7f7f7;
+        border-radius: 5px;
+        padding: 6px;
+        border: 1px solid #bbb;
+    }
+
+    .footer {
+        padding: 20px;
+        text-align: center;
     }
 </style>
+
 </head>
 <body>
-    <div class="ribbon">SATI - Armes y Desarmes</div>
 
-    <div class="container">
-        <div class="header">Desarme</div>
-        <div class="section">
-            <div class="form-row">
-                <label>Producto:</label>
-                <select>
-                    <option>Seleccione producto...</option>
-                    <option>Producto A</option>
-                    <option>Producto B</option>
-                    <option>Producto C</option>
-                </select>
-                <label style="margin-left:20px;">Cantidad:</label>
-                <input type="number" value="1" min="1">
-                <button>Agregar</button>
-            </div>
+<div class="ribbon">SATI - Armes y Desarmes</div>
 
-            <table>
-                <thead>
-                    <tr>
-                        <th>Producto</th>
-                        <th>Cantidad</th>
-                        <th>Valor Unitario</th>
-                        <th>Total</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>Producto A</td><td>2</td><td>100.00</td><td>200.00</td></tr>
-                </tbody>
-            </table>
+<div class="container">
 
-            <div class="totales">
-                <label>Total Desarme:</label>
-                <input type="text" value="200.00" readonly>
-            </div>
+<!-- ENCABEZADO GENERAL -->
+<div class="header">Datos Generales</div>
+<div class="section">
 
-            <div class="totales">
-                <table>
-                    <tr><th>Concepto</th><th>Debe</th><th>Haber</th></tr>
-                    <tr><td>Valor Mercadería</td><td>200.00</td><td>0.00</td></tr>
-                    <tr><td>Cuenta Movimiento</td><td>0.00</td><td>200.00</td></tr>
-                </table>
-            </div>
+    <div class="grid-header">
+        <div>
+            <label>Número:</label>
+            <input type="text">
         </div>
 
-        <div class="header">Arme</div>
-        <div class="section">
-            <div class="form-row">
-                <label>Producto:</label>
-                <select>
-                    <option>Seleccione producto...</option>
-                    <option>Producto X</option>
-                    <option>Producto Y</option>
-                    <option>Producto Z</option>
-                </select>
-                <label style="margin-left:20px;">Cantidad:</label>
-                <input type="number" value="1" min="1">
-                <button>Agregar</button>
-            </div>
-
-            <table>
-                <thead>
-                    <tr>
-                        <th>Producto</th>
-                        <th>Cantidad</th>
-                        <th>Valor Unitario</th>
-                        <th>Total</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>Producto X</td><td>1</td><td>150.00</td><td>150.00</td></tr>
-                </tbody>
-            </table>
-
-            <div class="totales">
-                <label>Total Arme:</label>
-                <input type="text" value="150.00" readonly>
-            </div>
-
-            <div class="totales">
-                <table>
-                    <tr><th>Concepto</th><th>Debe</th><th>Haber</th></tr>
-                    <tr><td>Valor Mercadería</td><td>0.00</td><td>150.00</td></tr>
-                    <tr><td>Cuenta Movimiento</td><td>150.00</td><td>0.00</td></tr>
-                </table>
-            </div>
+        <div>
+            <label>Serie:</label>
+            <input type="text">
         </div>
 
-        <div class="footer">Registro 1 de 1</div>
+        <div>
+            <label>Fecha:</label>
+            <input type="date">
+        </div>
+
+        <div>
+            <label>Bodega:</label>
+            <select>
+                <option>Bodega Principal</option>
+                <option>Bodega Secundaria</option>
+                <option>Bodega 3</option>
+            </select>
+        </div>
+
+        <div class="full">
+            <label>Descripción:</label>
+            <input type="text">
+        </div>
+
+        <div class="full">
+            <label>Motivo:</label>
+            <input type="text">
+        </div>
     </div>
+</div>
+
+<!-- DESARME -->
+<div class="header">Desarme</div>
+<div class="section">
+
+    <div class="form-inline">
+
+        <label>Producto:</label>
+
+        <div class="searchable">
+            <input type="text" id="desarmeSearch" placeholder="Buscar producto...">
+            <ul id="desarmeList"></ul>
+        </div>
+
+        <label>Cantidad:</label>
+        <input type="number" id="desarmeCantidad" value="1" min="1" style="width:90px">
+
+        <button onclick="agregarDesarme()">Agregar</button>
+    </div>
+
+    <table id="tablaDesarme">
+        <thead>
+            <tr>
+                <th>Producto</th><th>Cantidad</th><th>Valor Unitario</th><th>Total</th><th></th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <div class="totales">
+        Total Desarme: <input type="text" id="totalDesarme" readonly value="0">
+    </div>
+</div>
+
+<!-- ARME -->
+<div class="header">Arme</div>
+<div class="section">
+
+    <div class="form-inline">
+
+        <label>Producto:</label>
+
+        <div class="searchable">
+            <input type="text" id="armeSearch" placeholder="Buscar producto...">
+            <ul id="armeList"></ul>
+        </div>
+
+        <label>Cantidad:</label>
+        <input type="number" id="armeCantidad" value="1" min="1" style="width:90px">
+
+        <label style="margin-left:10px;">
+            <input type="checkbox" id="montoModificable">
+            Monto Modificable
+        </label>
+
+        <button onclick="agregarArme()">Agregar</button>
+    </div>
+
+    <table id="tablaArme">
+        <thead>
+            <tr>
+                <th>Producto</th><th>Cantidad</th><th>Valor Unitario</th><th>Total</th><th></th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <div class="totales">
+        Total Arme: <input type="text" id="totalArme" readonly value="0">
+    </div>
+
+</div>
+
+<div class="footer">
+    <button id="btnGuardar" disabled>Guardar</button>
+</div>
+
+</div>
+
+<script>
+/* -----------------------------
+   PRODUCTOS BASE
+------------------------------ */
+const productos = {
+    "Producto A": 120,
+    "Producto B": 150,
+    "Producto C": 180,
+    "Producto X": 130,
+    "Producto Y": 160,
+    "Producto Z": 190
+};
+
+/* -----------------------------
+   SEARCHABLE SELECT (BÚSQUEDA)
+------------------------------ */
+function setupSearchable(inputId, listId) {
+
+    const input = document.getElementById(inputId);
+    const list = document.getElementById(listId);
+
+    // Mostrar lista completa al hacer clic o focus
+    function mostrarListaCompleta() {
+        list.innerHTML = "";
+        Object.keys(productos).forEach(p => {
+            let li = document.createElement("li");
+            li.textContent = p;
+            li.onclick = () => {
+                input.value = p;
+                list.style.display = "none";
+            };
+            list.appendChild(li);
+        });
+        list.style.display = "block";
+    }
+
+    input.addEventListener("click", mostrarListaCompleta);
+    input.addEventListener("focus", mostrarListaCompleta);
+
+    // Filtrar mientras escribe
+    input.addEventListener("input", () => {
+        const filtro = input.value.toLowerCase();
+        list.innerHTML = "";
+
+        if (filtro.length === 0) {
+            mostrarListaCompleta();
+            return;
+        }
+
+        Object.keys(productos).forEach(p => {
+            if (p.toLowerCase().includes(filtro)) {
+                let li = document.createElement("li");
+                li.textContent = p;
+                li.onclick = () => {
+                    input.value = p;
+                    list.style.display = "none";
+                };
+                list.appendChild(li);
+            }
+        });
+
+        list.style.display = list.children.length > 0 ? "block" : "none";
+    });
+
+    // Ocultar cuando se hace click afuera
+    document.addEventListener("click", e => {
+        if (!list.contains(e.target) && e.target !== input) {
+            list.style.display = "none";
+        }
+    });
+}
+
+setupSearchable("desarmeSearch", "desarmeList");
+setupSearchable("armeSearch", "armeList");
+
+/* -----------------------------
+   DESARME
+------------------------------ */
+function agregarDesarme() {
+
+    let prod = desarmeSearch.value;
+    if (!productos[prod]) return;
+
+    let cant = parseInt(desarmeCantidad.value);
+    let precio = productos[prod];
+
+    let tbody = document.querySelector("#tablaDesarme tbody");
+
+    let fila = document.createElement("tr");
+
+    fila.innerHTML = `
+        <td>${prod}</td>
+        <td>${cant}</td>
+        <td>${precio}</td>
+        <td>${(cant * precio).toFixed(2)}</td>
+        <td><span class="trash" onclick="eliminarFila(this)">🗑️</span></td>
+    `;
+
+    tbody.appendChild(fila);
+    actualizarTotales();
+}
+
+/* -----------------------------
+   ARME
+------------------------------ */
+function agregarArme() {
+
+    let prod = armeSearch.value;
+    if (!productos[prod]) return;
+
+    let cant = parseInt(armeCantidad.value);
+    let precio = productos[prod];
+
+    let editable = document.getElementById("montoModificable").checked;
+
+    let tbody = document.querySelector("#tablaArme tbody");
+
+    let fila = document.createElement("tr");
+    fila.setAttribute("data-editable", editable);
+
+    fila.innerHTML = `
+        <td>${prod}</td>
+        <td>${cant}</td>
+        <td>
+            <input type="number" class="precioArme" value="${precio}" 
+                   min="1" ${editable ? "" : "disabled"} 
+                   oninput="actualizarTotales()">
+        </td>
+        <td class="totalRow">${(cant * precio).toFixed(2)}</td>
+        <td><span class="trash" onclick="eliminarFila(this)">🗑️</span></td>
+    `;
+
+    tbody.appendChild(fila);
+    actualizarTotales();
+}
+
+/* -----------------------------
+   UTILIDADES
+------------------------------ */
+function eliminarFila(elem) {
+    elem.parentNode.parentNode.remove();
+    actualizarTotales();
+}
+
+function actualizarTotales() {
+
+    // Total Desarme
+    let totalD = 0;
+    document.querySelectorAll("#tablaDesarme tbody tr").forEach(row => {
+        totalD += parseFloat(row.children[3].textContent);
+    });
+    totalDesarme.value = totalD.toFixed(2);
+
+    // Total Arme
+    let totalA = 0;
+    document.querySelectorAll("#tablaArme tbody tr").forEach(row => {
+        let cant = row.children[1].textContent;
+        let precio = parseFloat(row.querySelector("input").value);
+        let tot = cant * precio;
+
+        row.querySelector(".totalRow").textContent = tot.toFixed(2);
+        totalA += tot;
+    });
+    totalArme.value = totalA.toFixed(2);
+
+    // Habilitar guardar solo si coinciden
+    btnGuardar.disabled = (totalA !== totalD);
+}
+
+</script>
+
 </body>
 </html>
